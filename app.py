@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='templates/static')
+
 
 ASCII_CHARS = '@%#*+=-:. '
 
