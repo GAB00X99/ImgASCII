@@ -4,11 +4,12 @@
     <title>Convertir imagen a ASCII</title>
     <!-- Agregar enlaces a los estilos CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         /* Estilos personalizados */
         body {
             padding: 20px;
-         color: green;
+         color: yellow;
             background-color:black;
         }
 
@@ -30,8 +31,10 @@
             color: black;
             border: 4px solid green;
             border-radius: 10px;
-            
+            margin: 15px;
+            display: inline-block;
         }
+        
         
     </style>
 </head>
@@ -56,10 +59,13 @@
                 <label for="fontcolor" class="form-label">Color de letra:</label>
                 <input type="color" class="form-control" id="fontcolor" name="fontcolor" value="#000000">
             </div>
-            <button type="submit" class="btn btn-primary">Convertir</button>
+            <button type="submit" class="btn btn-warning">Convertir</button>
+            
         </form>
     </div>
-    <h2 class="mt-5">Resultado:</h2>
+    
+
+    <h2 class="mt-5">Resultado:</h2><button id="captureButton" class="btn btn-warning">Capturar imagen</button>
     <div class="resultado">
         {% if ascii_img %}
             
@@ -69,6 +75,8 @@
 
     <!-- Agregar el enlace al archivo de JavaScript de Bootstrap al final del cuerpo -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <script>
         // Obtener los elementos de entrada de color
@@ -90,7 +98,21 @@
         // Función para cambiar el color de letra
         function cambiarColorLetra() {
             resultadoDiv.style.color = fontColorInput.value;
-        }
+        } 
+        document.getElementById('captureButton').addEventListener('click', function() {
+            // Capturar el elemento .resultado
+            var resultadoDiv = document.querySelector('.resultado');
+            
+            // Utilizar html2canvas para generar la captura de pantalla
+            html2canvas(resultadoDiv).then(function(canvas) {
+              // Crear un elemento <a> para descargar la imagen
+              var link = document.createElement('a');
+              link.href = canvas.toDataURL(); // Obtener la URL de la imagen
+              link.download = 'captura.png'; // Nombre de archivo de descarga
+              link.click(); // Simular clic en el enlace para descargar la imagen
+            });
+          });
+           
     </script>
 </body>
 </html>
