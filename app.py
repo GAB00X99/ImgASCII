@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from PIL import Image
+import requests
+from io import BytesIO
 
-app = Flask(__name__, static_folder='templates/static')
-
+app = Flask(__name__)
 
 ASCII_CHARS = '@%#*+=-:. '
 
@@ -51,7 +52,9 @@ def index():
 
 @app.route('/', methods=['POST'])
 def convert():
-    file = request.files['file']
+    file = request.files.get('file')
+    image_url = request.form.get('image_url')
+
     if file:
         img = file.read()
         with open('temp.jpg', 'wb') as f:
@@ -59,8 +62,18 @@ def convert():
         size = int(request.form.get('size', 100))
         ascii_img = convert_image_to_ascii('temp.jpg', new_width=size)
         return render_template('index.html', ascii_img=ascii_img)
-
+    
+    elif image_url:
+        # New code to download and convert image from URL
+        response = requests.get(image_url)
+        image = Image.open(BytesIO(response.content))
+        size = int(request.form.get('size', 100))
+        image.save('temp.jpg')  # Save the downloaded image
+        ascii_img = convert_image_to_ascii('temp.jpg', new_width=size)
+        return render_template('index.html', ascii_img=ascii_img)
     return render_template('index.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
