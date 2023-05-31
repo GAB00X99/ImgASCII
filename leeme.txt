@@ -1,54 +1,29 @@
-# Convertidor de Imagen a ASCII
+Conversor de Imágenes a ASCII
+Este es un pequeño proyecto que convierte imágenes en ASCII utilizando Flask y la biblioteca PIL.
 
-Este es un convertidor de imágenes a ASCII que convierte imágenes en formato JPG/PNG a representaciones ASCII utilizando el módulo Python PIL y la biblioteca web Flask.
+Descripción
+El conversor de imágenes a ASCII es una aplicación web que permite cargar imágenes y convertirlas en representaciones ASCII. El proceso implica redimensionar la imagen, convertirla a escala de grises y mapear los valores de brillo de los píxeles a caracteres ASCII predefinidos.
 
-## Características
+Requisitos
+Asegúrate de tener instalado lo siguiente antes de ejecutar la aplicación:
 
-- Permite seleccionar y cargar una imagen desde un formulario web.
-- Convierte la imagen a una representación ASCII.
-- Muestra la representación ASCII de la imagen en la página web.
+Python 3
+Flask
+PIL (Pillow)
+Uso
+Clona el repositorio o descarga los archivos en tu máquina.
 
-## Requisitos previos
+Instala las dependencias mencionadas anteriormente.
 
-- Python 3.x instalado en tu sistema.
-- Las dependencias se encuentran en el archivo `requirements.txt` y se pueden instalar ejecutando `pip install -r requirements.txt`.
+Ejecuta la aplicación utilizando el siguiente comando:
+python app.py
+Abre tu navegador web y visita http://localhost:5000 para acceder a la aplicación.
 
-## Configuración
+En la página principal, puedes seleccionar un archivo de imagen desde tu dispositivo o proporcionar una URL de imagen.
 
-1. Clona este repositorio en tu máquina local o descarga el código fuente.
+Especifica el tamaño deseado para la imagen ASCII y haz clic en el botón "Convertir".
 
-2. Abre una terminal y navega hasta el directorio del proyecto.
+La imagen convertida se mostrará en la misma página.
 
-3. Ejecuta el siguiente comando para instalar las dependencias necesarias:
-
-
-## Uso
-
-1. Ejecuta la aplicación web ejecutando el siguiente comando en la terminal:
-
-
-2. Accede a la aplicación abriendo tu navegador web y visitando `http://localhost:5000`.
-
-3. Se mostrará un formulario donde puedes seleccionar una imagen.
-
-4. Haz clic en el botón "Convertir" para procesar la imagen y mostrar la representación ASCII en la página.
-
-## Personalización
-
-- Puedes personalizar el tamaño de la imagen resultante modificando el valor de `new_width` en el archivo `app.py`.
-
-- Puedes personalizar el diseño y la apariencia de la página HTML en el archivo `index.html`.
-
-## Limitaciones
-
-- La aplicación actualmente solo admite imágenes en formato JPG y PNG.
-
-- La aplicación no implementa validación exhaustiva de archivos de imagen. Asegúrate de cargar solo imágenes válidas.
-
-## Contribución
-
-Las contribuciones son bienvenidas. Si deseas mejorar esta aplicación o agregar nuevas características, no dudes en abrir un problema o enviar una solicitud de extracción.
-
-## Licencia
-
-Este proyecto está bajo la [Licencia MIT](LICENSE).
+Contribuciones
+Las contribuciones son bienvenidas. Si encuentras errores o tienes ideas para mejorar el proyecto, siéntete libre de abrir un problema o enviar una solicitud de extracción.
