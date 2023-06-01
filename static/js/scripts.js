@@ -32,3 +32,30 @@ document.getElementById('captureButton').addEventListener('click', function() {
         link.click(); // Simular clic en el enlace para descargar la imagen
     });
 });
+// Obtener el campo de texto de caracteres a ocultar
+var hiddenCharsInput = document.getElementById('hidden_chars');
+
+// Obtener el elemento de resultado
+var resultadoDiv = document.querySelector('.resultado');
+
+// Escuchar el evento de cambio en el campo de texto
+hiddenCharsInput.addEventListener('input', ocultarCaracteres);
+
+// Función para ocultar los caracteres especificados
+function ocultarCaracteres() {
+    var hiddenChars = hiddenCharsInput.value;
+
+    // Obtener el contenido del resultado
+    var asciiImg = resultadoDiv.querySelector('pre');
+    var asciiText = asciiImg.textContent;
+
+    // Reemplazar los caracteres especificados por espacios vacíos
+    for (var i = 0; i < hiddenChars.length; i++) {
+        var char = hiddenChars[i];
+        var regex = new RegExp(char, 'g');
+        asciiText = asciiText.replace(regex, ' ');
+    }
+
+    // Actualizar el contenido del resultado con los caracteres ocultos
+    asciiImg.textContent = asciiText;
+}
