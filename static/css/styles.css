@@ -6,6 +6,14 @@
     background-color: rgb(154, 4, 214);
     font-size: 1.5rem;
 }
+.additional-text {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    color: #fff;
+    font-size: 1.8rem;
+    font-family: fantasy;
+}
 
 /* Estilos personalizados */
 body {
