@@ -37,6 +37,11 @@
                 <label for="fontcolor" class="form-label">Color de caracteres:</label>
                 <input type="color" class="form-control" id="fontcolor" name="fontcolor" value="#000000">
             </div>
+            <div class="mb-3">
+                <label for="hidden_chars" class="form-label">Caracteres a ocultar:</label>
+                <input type="text" class="form-control" id="hidden_chars" name="hidden_chars" placeholder="@%#*+=-:.">
+    
+            </div>
             <button type="submit" class="btn btn-warning">Convertir</button>
         </form>
     </div>
@@ -44,11 +49,8 @@
     <div>
         <h2 class="mt-5">Resultado:</h2>
         <button id="captureButton" class="btn btn-warning">Capturar imagen</button>
-        <div class="mb-3">
-            <label for="hidden_chars" class="form-label">Caracteres a ocultar:</label>
-            <input type="text" class="form-control" id="hidden_chars" name="hidden_chars" placeholder="@%#*+=-:.">
+        <button id="copyButton" class="btn btn-warning">Copiar texto</button>
 
-        </div>
 
     </div>
     

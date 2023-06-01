@@ -17,7 +17,7 @@ function cambiarColorFondo() {
 // Función para cambiar el color de letra
 function cambiarColorLetra() {
     resultadoDiv.style.color = fontColorInput.value;
-} 
+}
 
 document.getElementById('captureButton').addEventListener('click', function() {
     // Capturar el elemento .resultado
@@ -32,6 +32,7 @@ document.getElementById('captureButton').addEventListener('click', function() {
         link.click(); // Simular clic en el enlace para descargar la imagen
     });
 });
+
 // Obtener el campo de texto de caracteres a ocultar
 var hiddenCharsInput = document.getElementById('hidden_chars');
 
@@ -59,3 +60,16 @@ function ocultarCaracteres() {
     // Actualizar el contenido del resultado con los caracteres ocultos
     asciiImg.textContent = asciiText;
 }
+
+// Copiar el texto al portapapeles
+document.getElementById('copyButton').addEventListener('click', function() {
+    var asciiText = resultadoDiv.querySelector('pre').textContent;
+    navigator.clipboard.writeText(asciiText)
+        .then(function() {
+            alert('Texto copiado al portapapeles');
+        })
+        .catch(function(error) {
+            console.error('Error al copiar el texto: ', error);
+        });
+});
+
