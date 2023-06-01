@@ -85,6 +85,9 @@ def convert():
         response = requests.get(image_url)
         image = Image.open(BytesIO(response.content))
         size = int(request.form.get('size', 100))
+        # Si la imagen tiene un modo RGBA, conviértela al modo RGB antes de guardarla
+        if image.mode == 'RGBA':
+            image = image.convert('RGB')
         image.save('temp.jpg')
         ascii_img = convert_image_to_ascii('temp.jpg', new_width=size, replace_chars=hidden_chars)
         return render_template('index.html', ascii_img=ascii_img)
