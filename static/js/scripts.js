@@ -50,10 +50,10 @@ function ocultarCaracteres() {
     var asciiText = asciiImg.textContent;
 
     // Reemplazar los caracteres especificados por espacios vacíos
-    for (var i = 0; i < hiddenChars.length; i++) {
-        var char = hiddenChars[i];
-        var regex = new RegExp(char, 'g');
-        asciiText = asciiText.replace(regex, ' ');
+    var charsArray = hiddenChars.split('');
+    for (var i = 0; i < charsArray.length; i++) {
+        var char = charsArray[i];
+        asciiText = asciiText.split(char).join(' ');
     }
 
     // Actualizar el contenido del resultado con los caracteres ocultos
