@@ -47,10 +47,11 @@ def convert_image_to_ascii(image_path, new_width=100, replace_chars=''):
     image = resize_image(image, new_width=new_width)
     image = grayscale(image)
 
-    ascii_str = pixels_to_ascii(image)
-
     if replace_chars:
+        ascii_str = pixels_to_ascii(image)
         ascii_str = replace_chars_with_space(ascii_str, replace_chars)
+    else:
+        ascii_str = pixels_to_ascii(image)
 
     img_width = image.width
     ascii_str_len = len(ascii_str)
@@ -75,21 +76,20 @@ def convert():
 
     if file:
         img = file.read()
-        with open('temp.jpg', 'wb') as f:
+        with open('temp.png', 'wb') as f:
             f.write(img)
         size = int(request.form.get('size', 100))
-        ascii_img = convert_image_to_ascii('temp.jpg', new_width=size, replace_chars=hidden_chars)
+        ascii_img = convert_image_to_ascii('temp.png', new_width=size, replace_chars=hidden_chars)
         return render_template('index.html', ascii_img=ascii_img)
 
     elif image_url:
         response = requests.get(image_url)
         image = Image.open(BytesIO(response.content))
         size = int(request.form.get('size', 100))
-        # Si la imagen tiene un modo RGBA, conviértela al modo RGB antes de guardarla
         if image.mode == 'RGBA':
             image = image.convert('RGB')
-        image.save('temp.jpg')
-        ascii_img = convert_image_to_ascii('temp.jpg', new_width=size, replace_chars=hidden_chars)
+        image.save('temp.png')
+        ascii_img = convert_image_to_ascii('temp.png', new_width=size, replace_chars=hidden_chars)
         return render_template('index.html', ascii_img=ascii_img)
 
     return render_template('index.html')
